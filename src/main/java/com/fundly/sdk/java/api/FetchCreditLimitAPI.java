@@ -2,7 +2,6 @@ package com.fundly.sdk.java.api;
 
 import com.fundly.sdk.java.model.AuthenticateToken;
 import com.fundly.sdk.java.model.FundlyConfig;
-import com.fundly.sdk.java.services.FetchCreditLimit;
 
 public class FetchCreditLimitAPI {
     FundlyConfig fundlyConfig;
