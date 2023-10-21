@@ -11,21 +11,23 @@ public class FetchCreditLimit {
     public FetchCreditLimit(FundlyConfig fundlyConfig){
         this.fundlyConfig = fundlyConfig;
     }
-    public CreditLimit getCreditLimit(String erpName, String erpCustomerId) {
+    public CreditLimit getCreditLimit(ERPRetailerKey erpRetailerKey){
         FetchCreditLimitAPI fetchCreditLimitAPI = new FetchCreditLimitAPI(fundlyConfig);
-        ERPRetailerKey  erpRetailerKey= ERPRetailerKey.builder()
-                .erpId(1)
-                .build();
-        return fetchCreditLimitAPI.getCreditLimit(null);
+        return fetchCreditLimitAPI.getCreditLimit(erpRetailerKey);
     }
     public static void main(String[] args) {
         FundlyConfig fundlyConfig = FundlyConfig.builder()
-                .userName("radheyKrishna")
+                .userName("wonderSoft")
                 .password("password")
                 .environment(Environment.SANDBOX)
                 .build();
         FetchCreditLimit fetchCreditLimit = new FetchCreditLimit(fundlyConfig);
-        CreditLimit creditLimit = fetchCreditLimit.getCreditLimit("erpName", "erpCustomerId");
+        ERPRetailerKey  erpRetailerKey= ERPRetailerKey.builder()
+                .erpId(100001)
+                .erpRetailerId(1)
+                .retailerId(357)
+                .build();
+        CreditLimit creditLimit = fetchCreditLimit.getCreditLimit(erpRetailerKey);
         System.out.println(creditLimit);
     }
 }

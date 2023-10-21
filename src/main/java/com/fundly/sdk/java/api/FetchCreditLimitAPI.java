@@ -29,11 +29,11 @@ public class FetchCreditLimitAPI {
         RequestBody body = RequestBody.create(new Gson().toJson(erpRetailerKey), JSON);
         String baseURL = fundlyConfig.getEnvironment().getValue().equalsIgnoreCase("SANDBOX") ?
                 EnvironmentConstants.SANDBOX_URL : EnvironmentConstants.PRODUCTION_URL;
-        String authenticateUrl = baseURL + "/erp/creditlimit";
-        log.info("Fundly Credit Limit url [{}]", authenticateUrl);
+        String creditLimitUrl = baseURL + "/erp/creditlimit";
+        log.info("Fundly Credit Limit url [{}]", creditLimitUrl);
         okhttp3.Request request = new okhttp3.Request.Builder()
                 .addHeader("Authorization", "Bearer " + token.getJwttoken())
-                .url(authenticateUrl)
+                .url(creditLimitUrl)
                 .method("POST", body)
                 .build();
         try {
