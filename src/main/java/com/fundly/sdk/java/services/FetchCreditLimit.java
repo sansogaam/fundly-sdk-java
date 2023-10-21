@@ -2,6 +2,8 @@ package com.fundly.sdk.java.services;
 
 import com.fundly.sdk.java.api.FetchCreditLimitAPI;
 import com.fundly.sdk.java.env.Environment;
+import com.fundly.sdk.java.model.CreditLimit;
+import com.fundly.sdk.java.model.ERPRetailerKey;
 import com.fundly.sdk.java.model.FundlyConfig;
 
 public class FetchCreditLimit {
@@ -9,9 +11,12 @@ public class FetchCreditLimit {
     public FetchCreditLimit(FundlyConfig fundlyConfig){
         this.fundlyConfig = fundlyConfig;
     }
-    public void getCreditLimit( String erpName, String erpCustomerId) {
+    public CreditLimit getCreditLimit(String erpName, String erpCustomerId) {
         FetchCreditLimitAPI fetchCreditLimitAPI = new FetchCreditLimitAPI(fundlyConfig);
-        fetchCreditLimitAPI.getCreditLimit(erpName, erpCustomerId);
+        ERPRetailerKey  erpRetailerKey= ERPRetailerKey.builder()
+                .erpId(1)
+                .build();
+        return fetchCreditLimitAPI.getCreditLimit(null);
     }
     public static void main(String[] args) {
         FundlyConfig fundlyConfig = FundlyConfig.builder()
@@ -20,6 +25,7 @@ public class FetchCreditLimit {
                 .environment(Environment.SANDBOX)
                 .build();
         FetchCreditLimit fetchCreditLimit = new FetchCreditLimit(fundlyConfig);
-        fetchCreditLimit.getCreditLimit("erpName", "erpCustomerId");
+        CreditLimit creditLimit = fetchCreditLimit.getCreditLimit("erpName", "erpCustomerId");
+        System.out.println(creditLimit);
     }
 }

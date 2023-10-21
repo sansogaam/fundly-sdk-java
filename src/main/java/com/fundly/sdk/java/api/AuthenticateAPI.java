@@ -25,7 +25,7 @@ public class AuthenticateAPI {
         RequestBody body = RequestBody.create(new Gson().toJson(authenticate), JSON);
         String baseURL = fundlyConfig.getEnvironment().getValue().equalsIgnoreCase("SANDBOX") ?
                 EnvironmentConstants.SANDBOX_URL : EnvironmentConstants.PRODUCTION_URL;
-        String authenticateUrl = baseURL + "/authenticate";
+        String authenticateUrl = baseURL + "/token/authenticate";
         log.info("Fundly Authentication url [{}]", authenticateUrl);
 
         okhttp3.Request request = new okhttp3.Request.Builder()
